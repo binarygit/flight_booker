@@ -7,10 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #
 
-Airport.delete_all
-
-Airport.create!([
+airports = [
   {airport_code: 'KTM'},
   {airport_code: 'PKR'},
   {airport_code: 'BDP'},
-])
+]
+
+Airport.delete_all
+Flight.delete_all
+
+Airport.create!(airports)
+Airport.first.flights.create!(departure_date: 'Mon, 21 Feb 2022' , arrival_date: 'Mon, 21 Feb 2022', duration: '50 minutes')
