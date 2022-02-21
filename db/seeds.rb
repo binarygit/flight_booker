@@ -5,16 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-#
 
 airports = [
   {airport_code: 'KTM'},
   {airport_code: 'PKR'},
-  {airport_code: 'BDP'},
 ]
 
-Airport.delete_all
 Flight.delete_all
+Airport.delete_all
 
 Airport.create!(airports)
-Airport.first.flights.create!(departure_date: 'Mon, 21 Feb 2022' , arrival_date: 'Mon, 21 Feb 2022', duration: '50 minutes')
+Flight.create!(departure_date: 'Mon, 21 Feb 2022' , arrival_date: 'Mon, 21 Feb 2022', duration: '50 minutes', departure_airport_id: Airport.first.id, arrival_airport_id: Airport.last.id)
